@@ -37,14 +37,7 @@ def clean_text(dataframe):
     #
     dataframe = dataframe.copy()
     dataframe["line"] = dataframe["line"].str.lower()
-    dataframe["line"] = (
-        dataframe["line"]
-        .str.replace(",", "")
-        .str.replace(
-            ".",
-            "",
-        )
-    )
+    dataframe["line"] = (dataframe["line"].str.replace(",", "").str.replace(".","",))
     return dataframe
 
 
@@ -56,7 +49,6 @@ def count_words(dataframe):
     dataframe = dataframe.explode("line")
     dataframe = dataframe.groupby("line").size().reset_index(name="count")
     return dataframe
-
 
 def save_output(dataframe, output_directory):
     """Save output to a file."""
